@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Button } from 'semantic-ui-react';
 import { ApolloProvider } from "@apollo/client";
 import client from "./config/apollo";
 import Auth from "./pages/Auth";
 
 function App() {
-  const [auth, setAuth] = useState({ name: "Robert" });
+  const [auth, setAuth] = useState();
 
   return (
     <ApolloProvider client={client}>
