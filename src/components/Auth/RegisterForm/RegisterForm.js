@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Button } from "semantic-ui-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { REGISTER } from "../../../gql/user";
 import "./RegisterForm.scss";
@@ -36,10 +37,21 @@ export default function RegisterForm({ setShowLogin }) {
                         input: newUser,
                     }
                 });
-                console.log(result)
+
+                toast(`Hola ${newUser.name} se ha registrado con éxito! 👍 `, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setShowLogin(true);
 
             } catch (error) {
-                console.log(error)
+                toast.error(error.message)
+
             }
         }
     })
